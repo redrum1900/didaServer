@@ -1,0 +1,21 @@
+{
+  "name": "dida",
+  "version": "0.0.1",
+  "authors": [
+    "redrum <88333538@163.com>"
+  ],
+  "description": "dida init",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
