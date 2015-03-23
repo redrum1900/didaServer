@@ -6,7 +6,7 @@ var url = require('url')
 var port = process.env.PORT || 3000
 var path = require('path')
 var _ = require('underscore')
-var Movie = require('./views/schemas/movie');
+var Movie = require('./views/models/movie');
 // var MovieSchema = require('./views/movie')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
@@ -171,6 +171,7 @@ app.get('/api/get',function(req,res,next){
 
 		var ep = new eventproxy()
 		ep.after('bili',items.length,function(bilis){
+			res.send("success");
 
 		})
 
@@ -198,14 +199,17 @@ app.get('/api/get',function(req,res,next){
 					flash:h_player,
 					poster:h_src
 				})
-				_movie.save(function(err,movie){
-					if (err) {
-						console.log(err)
-					};
-					// res.redirect('/movie/' + movie._id)
-				})
 
+				Movie.find({flash : h_player},function(err,fdata){
+					if (fdata.length === 0) {
+						_movie.save(function(err,movie){
+							if (err) {console.log(err)};
+						})
+					};
+				})
 			})
+
+			ep.emit('bili',item)
 		})
 
 	})
