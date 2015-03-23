@@ -5,10 +5,10 @@ block content
 		.row
 			each item in movies
 				.col-md-2
-					.thumbnail
+					.thumbnail(heigth = '300px')
 						a(href='/movie/#{item._id}')
 							img(src='#{item.poster}' , alt='#{item.title}')
 						.caption
-							h3 #{item.title}
+							h2 #{item.title}
 							p: a.btn.btn-primary(href='/movie/#{item._id}' , role='button')
 								观看预告片

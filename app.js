@@ -3,16 +3,17 @@ var cheerio = require('cheerio')
 var superagent = require('superagent')
 var eventproxy = require('eventproxy')
 var url = require('url')
-var port = process.env.PORT || 3000
+var port =  18080
 var path = require('path')
 var _ = require('underscore')
 var Movie = require('./views/models/movie');
-// var MovieSchema = require('./views/movie')
-var mongoose = require('mongoose')
+var mongoose = require('./public/js/getConnect')
 var bodyParser = require('body-parser')
 var app = express()
 
-mongoose.connect('mongodb://localhost/dida')
+mongoose.getConnect(); 
+
+
 
 app.set('views','./views/pages')
 app.set('view engine','jade')
@@ -45,7 +46,7 @@ app.get('/movie/:id',function(req,res){
 	var id = req.params.id
 	Movie.findById(id,function(err,movie){
 		res.render('detail',{
-			title:'详情页' + movie.title,
+			title: movie.title,
 			movie:movie
 		})
 	})
